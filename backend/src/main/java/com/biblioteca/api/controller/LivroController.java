@@ -5,6 +5,7 @@ import com.biblioteca.api.service.LivroService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/livros")
@@ -25,6 +26,16 @@ public class LivroController {
     @GetMapping("/{id}")
     public Livro buscar(@PathVariable Long id) {
         return service.buscar(id);
+    }
+
+    @GetMapping("/buscar")
+    public List<Livro> buscarPorTitulo(@RequestParam String titulo) {
+        return service.buscarPorTitulo(titulo);
+    }
+
+    @GetMapping("/stats")
+    public Map<String, Object> stats() {
+        return Map.of("total", service.totalLivros());
     }
 
     @PostMapping
