@@ -19,6 +19,14 @@ public class LivroService {
         return repository.findAll();
     }
 
+    public List<Livro> buscarPorTitulo(String titulo) {
+        return repository.findByTituloContainingIgnoreCase(titulo);
+    }
+
+    public Long totalLivros() {
+        return repository.count();
+    }
+
     public Livro buscar(Long id) {
         return repository.findById(id).orElseThrow();
     }
